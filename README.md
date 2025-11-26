@@ -39,7 +39,7 @@ If you see version numbers, you're good! If not, try restarting your computer af
 
 ```bash
 # Download the project
-git clone <repository-url>
+git clone https://github.com/bubuuble/todoapp-industrix.git
 cd industrix
 ```
 
