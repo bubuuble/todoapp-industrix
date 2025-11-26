@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. Database Service
+  db:
+    image: postgres:15
+    container_name: todo_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todolist
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # 2. Backend Service (BARU)
+  api:
+    build: ./backend
+    container_name: todo_backend
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      PORT: 4000
+      DB_HOST: db  # Nama service database di atas
+      DB_USER: user
+      DB_PASS: password
+      DB_NAME: todolist
+
+volumes:
+  pgdata:
